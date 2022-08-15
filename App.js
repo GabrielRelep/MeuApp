@@ -1,12 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet,ImageBackground, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet,ImageBackground,Image, Text, View, TouchableOpacity } from 'react-native';
 import Home from './src/pages/Home';
-import image from './src/assets/fundo.jpg';
+import image from './src/assets/fundo.png';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { WebView } from 'react-native-webview';
+import { useFonts, Comfortaa_400Regular } from '@expo-google-fonts/comfortaa';
+import seta from './src/assets/seta.png'
 export default function App() {
   const [web,setWeb] = useState(false)
+  let [fontsLoaded] = useFonts({
+    Comfortaa_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
      <View style={styles.container}>
      
@@ -18,11 +27,18 @@ export default function App() {
       <Text  style={styles.text}>
       Inicie sua{`\n`}viagem{`\n`}com estilo!
       </Text>
+      <MaterialIcons style={{
+        marginLeft:'45%',
+        marginTop:'100%',
+        marginBottom:20
+      }} name="keyboard-arrow-down" size={45} color="white" />
       <TouchableOpacity style={styles.button} onPress={()=>setWeb(true)}>
         <Text style={{
           fontSize: 25,
           color: 'white',
           marginLeft:20,
+          fontFamily:'Comfortaa_400Regular'
+
         }}>Iniciar</Text>
       <MaterialIcons style={{marginRight:30}} name="arrow-forward-ios" size={30} color='white' />
 
@@ -47,10 +63,11 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: "bold",
     marginLeft:20,
-    marginTop:70 ,
+    marginTop:120 ,
+    fontFamily:'Comfortaa_400Regular'
   },
   button:{
-    backgroundColor:'#944BBB',
+    backgroundColor:'transparent',
     width: '80%',
     marginLeft:'10%',
     height: 50,
@@ -59,7 +76,8 @@ const styles = StyleSheet.create({
     alignContent:'center',
     alignItems:'center',
     flexDirection:'row',
-    marginTop:'120%'
+    borderWidth:1,
+    borderColor:"white",
   
   }
 
